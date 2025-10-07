@@ -1,7 +1,7 @@
 # nigeria-goods-monitor
 Website to monitor goods in Nigeria
 // Nigeria Goods Monitoring Web App (Backend + Frontend)
-// Author: You 😎
+// Author: Alexhunters1990
 
 // --- 1. Basic server setup ---
 const express = require("express");
