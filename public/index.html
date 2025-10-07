@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nigeria Goods Monitoring</title>
+</head>
+<body>
+  <h1>🇳🇬 Nigeria Goods Monitoring</h1>
+  <p>Report goods movement or irregularities.</p>
+
+  <form id="reportForm">
+    <input type="text" id="name" placeholder="Your Name"><br>
+    <input type="text" id="goods" placeholder="Goods Description"><br>
+    <input type="text" id="location" placeholder="Location"><br>
+    <button type="submit">Submit Report</button>
+  </form>
+
+  <hr>
+
+  <h3>Admin Login</h3>
+  <input type="text" id="code" placeholder="Enter admin code">
+  <button id="loginBtn">Login</button>
+
+  <script>
+    const form = document.getElementById('reportForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = {
+        name: document.getElementById('name').value,
+        goods: document.getElementById('goods').value,
+        location: document.getElementById('location').value
+      };
+      const res = await fetch('/report', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
+      });
+      const result = await res.json();
+      alert(result.message);
+    });
+
+    document.getElementById('loginBtn').addEventListener('click', async () => {
+      const code = document.getElementById('code').value;
+      const res = await fetch('/admin-login', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ code })
+      });
+      const result = await res.json();
+      alert(result.message);
+    });
+  </script>
+</body>
+</html>
